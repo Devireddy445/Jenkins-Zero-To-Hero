@@ -2,7 +2,7 @@ pipeline {
   agent any
   tools {
     maven 'maven'
-    jdk 'openjdk17'
+    jdk 'openjdk21'
   }
   stages {
     stage('Checkout') {
@@ -51,7 +51,7 @@ pipeline {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     git config user.email "harishkumarr521@gmail.com"
-                    git config user.name "hari"
+                    git config user.name "harish"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/10/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
